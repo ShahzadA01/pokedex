@@ -72,7 +72,7 @@ export const PokemonCard = ({
     <div className='flex flex-col items-center space-y-6 p-8 rounded-lg shadow-md border border-gray-200 bg-white max-w-md w-full'>
       {/* Pokemon Name and ID */}
       <div className='text-center'>
-        <h2 className='text-3xl font-bold capitalize'>{name}</h2>
+        <h2 className='text-3xl font-bold capitalize text-black'>{name}</h2>
         <p className='text-gray-500 text-lg'>
           #{id.toString().padStart(3, '0')}
         </p>
@@ -95,11 +95,11 @@ export const PokemonCard = ({
       <div className='grid grid-cols-2 gap-6 w-full text-center'>
         <div className='bg-gray-50 p-4 rounded-lg'>
           <p className='font-semibold text-gray-700'>Height</p>
-          <p className='text-xl'>{height / 10}m</p>
+          <p className='text-xl text-black'>{height / 10}m</p>
         </div>
         <div className='bg-gray-50 p-4 rounded-lg'>
-          <p className='font-semibold text-gray-700'>Weight</p>
-          <p className='text-xl'>{weight / 10}kg</p>
+          <p className='font-semibold text-black'>Weight</p>
+          <p className='text-xl text-black'>{weight / 10}kg</p>
         </div>
       </div>
 
