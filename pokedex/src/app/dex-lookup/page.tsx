@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { fetchPokemonData } from '../../../api/api'
-import { Input } from '@/compononents/ui/input'
-import { Button } from '@/compononents/ui/button'
-import PokemonCard from '@/compononents/common/pokemonCard'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import PokemonCard from '@/components/common/pokemonCard'
 
 interface PokemonData {
   name: string

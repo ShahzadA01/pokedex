@@ -1,5 +1,7 @@
 'use client'
 import Image from 'next/image'
+import { useFavoritesStore } from '../../../store/favoritesStore'
+import { Heart } from 'lucide-react'
 
 interface PokemonData {
   name: string
@@ -29,6 +31,7 @@ export const PokemonCard = ({
   isLoading,
   showInitialState = true,
 }: Props) => {
+  const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore()
   if (showInitialState) {
     return (
       <div className='flex items-center justify-center p-8 rounded-lg shadow-md border border-gray-200 min-h-[300px] bg-white'>
@@ -68,9 +71,47 @@ export const PokemonCard = ({
 
   const { name, id, height, weight, sprites } = pokemonData
 
+  const handleFavoriteToggle = () => {
+    if (!pokemonData) return
+
+    const favoriteData = {
+      id: pokemonData.id,
+      name: pokemonData.name,
+      sprite: pokemonData.sprites.front_default,
+    }
+
+    if (isFavorite(pokemonData.id)) {
+      removeFavorite(pokemonData.id)
+    } else {
+      addFavorite(favoriteData)
+    }
+  }
+
   return (
     <div className='flex flex-col items-center space-y-6 p-8 rounded-lg shadow-md border border-gray-200 bg-white max-w-md w-full'>
       {/* Pokemon Name and ID */}
+      <div className='flex flex-col items-center space-y-6 p-8 rounded-lg shadow-md border border-gray-200 bg-white max-w-md w-full relative'>
+        {/* Favorite Button */}
+        <button
+          onClick={handleFavoriteToggle}
+          className='absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors'
+          aria-label={
+            isFavorite(pokemonData?.id || 0)
+              ? 'Remove from favorites'
+              : 'Add to favorites'
+          }
+        >
+          <Heart
+            className={`w-6 h-6 ${
+              isFavorite(pokemonData?.id || 0)
+                ? 'fill-red-500 text-red-500'
+                : 'text-gray-400 hover:text-red-400'
+            } transition-colors`}
+          />
+        </button>
+
+        {/* ... rest of your PokemonCard JSX ... */}
+      </div>
       <div className='text-center'>
         <h2 className='text-3xl font-bold capitalize text-black'>{name}</h2>
         <p className='text-gray-500 text-lg'>

@@ -1,6 +1,6 @@
 'use client'
 
-import PokemonGrid from '@/compononents/common/pokemonGrid'
+import PokemonGrid from '@/components/common/pokemonGrid'
 
 export const DexLookup = () => {
   return (
